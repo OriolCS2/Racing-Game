@@ -7,6 +7,9 @@ VehicleInfo::~VehicleInfo()
 {
 	//if(wheels != NULL)
 		//delete wheels;
+	
+
+	
 }
 
 // ----------------------------------------------------------------------------
@@ -39,6 +42,7 @@ void PhysVehicle3D::Render()
 	}
 
 	Cube chassis(info.chassis_size.x, info.chassis_size.y, info.chassis_size.z);
+	chassis.color = Green;
 	vehicle->getChassisWorldTransform().getOpenGLMatrix(&chassis.transform);
 	btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
 	btVector3 offset(info.chassis_offset.x, info.chassis_offset.y, info.chassis_offset.z);
@@ -51,18 +55,39 @@ void PhysVehicle3D::Render()
 
 	chassis.Render();
 
-	Cylinder lights(info.aileron_radius, info.aileron_height);
-	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lights.transform);
+	Cylinder aileron(info.aileron_radius, info.aileron_height);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&aileron.transform);
 	btQuaternion j = vehicle->getChassisWorldTransform().getRotation();
-	lights.color = Red;
+	aileron.color = Red;
 	btVector3 Offset(info.aileron_offset.x, info.aileron_offset.y, info.aileron_offset.z);
 	Offset = Offset.rotate(j.getAxis(), j.getAngle());
 
-	lights.transform.M[12] += Offset.getX();
-	lights.transform.M[13] += Offset.getY();
-	lights.transform.M[14] += Offset.getZ();
+	aileron.transform.M[12] += Offset.getX();
+	aileron.transform.M[13] += Offset.getY();
+	aileron.transform.M[14] += Offset.getZ();
 
-	lights.Render();
+	aileron.Render();
+
+	
+	
+	for (int i = 0; i < info.num_lights; ++i)
+	{
+		Cube light(info.lights[i].dimensions.x, info.lights[i].dimensions.y, info.lights[i].dimensions.z);
+		light.color = Red;
+		vehicle->getChassisWorldTransform().getOpenGLMatrix(&light.transform);
+		btQuaternion q = vehicle->getChassisWorldTransform().getRotation();
+		btVector3 offset(info.lights[i].offset.x, info.lights[i].offset.y, info.lights[i].offset.z);
+		offset = offset.rotate(q.getAxis(), q.getAngle());
+
+		light.transform.M[12] += offset.getX();
+		light.transform.M[13] += offset.getY();
+		light.transform.M[14] += offset.getZ();
+
+
+		light.Render();
+
+
+	}
 }
 
 // ----------------------------------------------------------------------------

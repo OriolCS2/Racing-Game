@@ -2,6 +2,7 @@
 
 #include "PhysBody3D.h"
 #include "glmath.h"
+#include "Primitive.h"
 
 class btRaycastVehicle;
 struct PhysBody3D;
@@ -18,6 +19,13 @@ struct Wheel
 	bool drive; // does this wheel received engine power ?
 	bool brake; // does breakes affect this wheel ?
 	bool steering; // does this wheel turns ?
+};
+
+struct Lights {
+
+	vec3 dimensions;
+	vec3 offset;
+
 };
 
 struct VehicleInfo
@@ -38,7 +46,9 @@ struct VehicleInfo
 	float maxSuspensionForce; // defaults to 6000 / max force to the chassis
 
 	Wheel* wheels;
+	Lights* lights;
 	int num_wheels;
+	int num_lights;
 };
 
 
@@ -57,4 +67,5 @@ public:
 
 	VehicleInfo info;
 	btRaycastVehicle* vehicle;
+	
 };

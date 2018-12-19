@@ -33,6 +33,22 @@ bool ModulePlayer::Start()
 	car.aileron_offset.Set(0, 3, 3);
 	car.aileron_radius = 0.5f;
 	car.aileron_height = 3.5f;
+	
+	car.num_lights = 4;
+	car.lights = new Lights[car.num_lights];
+	//LIGHT DRETA
+	car.lights[0].dimensions.Set(0.7, 0.7, 1.0);
+	car.lights[0].offset.Set(0.8f, 2.3, -2.6f);
+	//LIGHT ESQUERRA
+	car.lights[1].dimensions.Set(0.7, 0.7, 1.0);
+	car.lights[1].offset.Set(-0.8f, 2.3, -2.6f);
+	//CENTRAL
+	car.lights[2].dimensions.Set(3, 1, 1.0);
+	car.lights[2].offset.Set(0.0f, 1.0, -2.6f);
+	//CENTRAL 2
+	car.lights[3].dimensions.Set(3, 0.6f, 2.0);
+	car.lights[3].offset.Set(0.0f, 0.3, -2.6f);
+
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
 	float wheel_radius = 0.6f;
@@ -47,8 +63,8 @@ bool ModulePlayer::Start()
 	vec3 direction(0,-1,0);
 	vec3 axis(-1,0,0);
 	
-	car.num_wheels = 4;
-	car.wheels = new Wheel[4];
+	car.num_wheels = 6;
+	car.wheels = new Wheel[car.num_wheels];
 
 	// DARRERA DRETA
 	car.wheels[0].connection.Set(half_width - 0.3f * wheel_width, connection_height, half_length - wheel_radius);
@@ -62,6 +78,18 @@ bool ModulePlayer::Start()
 	car.wheels[0].brake = true;
 	car.wheels[0].steering = false;
 
+	// DARRERA DRETA2
+	car.wheels[4].connection.Set(half_width - 0.3f * wheel_width, connection_height, half_length - wheel_radius - 2.5f);
+	car.wheels[4].direction = direction;
+	car.wheels[4].axis = axis;
+	car.wheels[4].suspensionRestLength = suspensionRestLength;
+	car.wheels[4].radius = wheel_radius;
+	car.wheels[4].width = wheel_width;
+	car.wheels[4].front = false;
+	car.wheels[4].drive = true;
+	car.wheels[4].brake = true;
+	car.wheels[4].steering = false;
+
 	// DARRERA ESQUERRA
 	car.wheels[1].connection.Set(-half_width + 0.3f * wheel_width, connection_height, half_length - wheel_radius);
 	car.wheels[1].direction = direction;
@@ -73,6 +101,18 @@ bool ModulePlayer::Start()
 	car.wheels[1].drive = true;
 	car.wheels[1].brake = true;
 	car.wheels[1].steering = false;
+
+	// DARRERA ESQUERRA 2
+	car.wheels[5].connection.Set(-half_width + 0.3f * wheel_width, connection_height, half_length - wheel_radius - 2.5f);
+	car.wheels[5].direction = direction;
+	car.wheels[5].axis = axis;
+	car.wheels[5].suspensionRestLength = suspensionRestLength;
+	car.wheels[5].radius = wheel_radius;
+	car.wheels[5].width = wheel_width;
+	car.wheels[5].front = false;
+	car.wheels[5].drive = true;
+	car.wheels[5].brake = true;
+	car.wheels[5].steering = false;
 
 	// DRETA DAVANT 
 	car.wheels[2].connection.Set(half_width - 0.3f * wheel_width, connection_height, -half_length + wheel_radius);
@@ -117,43 +157,45 @@ update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
 
-	if(App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 	{
-		acceleration = MAX_ACCELERATION * dt;
+		brake = BRAKE_POWER * dt;
 	}
-
+	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE) {
+		if (App->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+		{
+			acceleration = MAX_ACCELERATION * dt;
+		}
+		if (App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+		{
+			acceleration = -MAX_ACCELERATION * dt;
+		}
+	}
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
-		acceleration = MAX_ACCELERATION * dt;
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE) 
+			acceleration = MAX_ACCELERATION * dt;
 		if(turn < TURN_DEGREES)
 			turn +=  TURN_DEGREES;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
-		acceleration = MAX_ACCELERATION *dt;
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE)
+			acceleration = MAX_ACCELERATION * dt;
 		if(turn > -TURN_DEGREES)
 			turn -= TURN_DEGREES;
 	}
 
-	if(App->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-	{
-		acceleration = -MAX_ACCELERATION * dt;
-	}
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
-	{
-		brake = BRAKE_POWER * dt;
-	}
+	
+	
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);
 
 	vehicle->Render();
 
-	char title[80];
-	sprintf_s(title, "%.1f Km/h", vehicle->GetKmh());
-	App->window->SetTitle(title);
-
+	
 	return UPDATE_CONTINUE;
 }
 
