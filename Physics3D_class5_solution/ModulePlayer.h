@@ -5,8 +5,8 @@
 
 struct PhysVehicle3D;
 
-#define MAX_ACCELERATION -300000.0f
-#define TURN_DEGREES 45.0f * DEGTORAD
+#define MAX_ACCELERATION -150000.0f
+#define TURN_DEGREES 35.0f * DEGTORAD
 #define BRAKE_POWER 52000.0f
 
 class ModulePlayer : public Module
