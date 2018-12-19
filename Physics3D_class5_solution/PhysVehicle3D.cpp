@@ -50,6 +50,19 @@ void PhysVehicle3D::Render()
 
 
 	chassis.Render();
+
+	Cylinder lights(info.aileron_radius, info.aileron_height);
+	vehicle->getChassisWorldTransform().getOpenGLMatrix(&lights.transform);
+	btQuaternion j = vehicle->getChassisWorldTransform().getRotation();
+	lights.color = Red;
+	btVector3 Offset(info.aileron_offset.x, info.aileron_offset.y, info.aileron_offset.z);
+	Offset = Offset.rotate(j.getAxis(), j.getAngle());
+
+	lights.transform.M[12] += Offset.getX();
+	lights.transform.M[13] += Offset.getY();
+	lights.transform.M[14] += Offset.getZ();
+
+	lights.Render();
 }
 
 // ----------------------------------------------------------------------------

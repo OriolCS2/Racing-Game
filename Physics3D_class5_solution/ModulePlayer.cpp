@@ -30,7 +30,9 @@ bool ModulePlayer::Start()
 	car.maxSuspensionTravelCm = 1000.0f;
 	car.frictionSlip = 50.5;
 	car.maxSuspensionForce = 6000.0f;
-	
+	car.aileron_offset.Set(0, 3, 3);
+	car.aileron_radius = 0.5f;
+	car.aileron_height = 3.5f;
 	// Wheel properties ---------------------------------------
 	float connection_height = 1.2f;
 	float wheel_radius = 0.6f;
@@ -48,8 +50,8 @@ bool ModulePlayer::Start()
 	car.num_wheels = 4;
 	car.wheels = new Wheel[4];
 
-	// FRONT-LEFT ------------------------
-	car.wheels[0].connection.Set(half_width - 0.8f * wheel_width, connection_height, half_length - wheel_radius);
+	// DARRERA DRETA
+	car.wheels[0].connection.Set(half_width - 0.3f * wheel_width, connection_height, half_length - wheel_radius);
 	car.wheels[0].direction = direction;
 	car.wheels[0].axis = axis;
 	car.wheels[0].suspensionRestLength = suspensionRestLength;
@@ -60,7 +62,7 @@ bool ModulePlayer::Start()
 	car.wheels[0].brake = true;
 	car.wheels[0].steering = false;
 
-	// FRONT-RIGHT ------------------------
+	// DARRERA ESQUERRA
 	car.wheels[1].connection.Set(-half_width + 0.3f * wheel_width, connection_height, half_length - wheel_radius);
 	car.wheels[1].direction = direction;
 	car.wheels[1].axis = axis;
