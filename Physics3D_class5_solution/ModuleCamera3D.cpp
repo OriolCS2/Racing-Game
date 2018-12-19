@@ -1,6 +1,9 @@
 #include "Globals.h"
 #include "Application.h"
 #include "PhysBody3D.h"
+#include "ModulePlayer.h"
+#include "ModulePhysics3D.h"
+#include "PhysVehicle3D.h"
 #include "ModuleCamera3D.h"
 
 ModuleCamera3D::ModuleCamera3D(Application* app, bool start_enabled) : Module(app, start_enabled)
@@ -41,7 +44,7 @@ update_status ModuleCamera3D::Update(float dt)
 	// Implement a debug camera with keys and mouse
 	// Now we can make this movememnt frame rate independant!
 
-	vec3 newPos(0,0,0);
+	/*vec3 newPos(0,0,0);
 	float speed = 3.0f * dt;
 	if(App->input->GetKey(SDL_SCANCODE_LSHIFT) == KEY_REPEAT)
 		speed = 8.0f * dt;
@@ -95,6 +98,34 @@ update_status ModuleCamera3D::Update(float dt)
 
 		Position = Reference + Z * length(Position);
 	}
+	*/
+
+
+	
+	btTransform transform = App->player->vehicle->vehicle->getChassisWorldTransform();
+
+	vec3 pos = TransformToVec3(transform.getOrigin());
+	vec3 dir = TransformToVec3(transform.getBasis().getColumn(2));
+
+
+	vec3 CamPos = 30 * dir + pos;
+	CamPos.y += 10;
+
+	vec3 pop;
+	pastDirections.Pop(pop);
+	vec3 CamDir = pos - 10 * pop;
+
+	Look(CamPos, CamDir, true);
+
+
+
+
+
+
+
+
+
+
 
 	// Recalculate matrix -------------
 	CalculateViewMatrix();
@@ -154,4 +185,9 @@ void ModuleCamera3D::CalculateViewMatrix()
 {
 	ViewMatrix = mat4x4(X.x, Y.x, Z.x, 0.0f, X.y, Y.y, Z.y, 0.0f, X.z, Y.z, Z.z, 0.0f, -dot(X, Position), -dot(Y, Position), -dot(Z, Position), 1.0f);
 	ViewMatrixInverse = inverse(ViewMatrix);
+}
+
+vec3 ModuleCamera3D::TransformToVec3(btVector3 vector)
+{
+	return vec3{ vector.x(),vector.y(),vector.z() };
 }

@@ -2,7 +2,9 @@
 #include "Module.h"
 #include "Globals.h"
 #include "glmath.h"
-
+#include "queue.h"
+class vec3;
+class btVector3;
 class ModuleCamera3D : public Module
 {
 public:
@@ -21,12 +23,14 @@ public:
 private:
 
 	void CalculateViewMatrix();
+	
+	vec3 TransformToVec3(btVector3 vector);
 
 public:
 	
 	vec3 X, Y, Z, Position, Reference;
 
 private:
-
+	p2Queue<vec3> pastDirections;
 	mat4x4 ViewMatrix, ViewMatrixInverse;
 };
