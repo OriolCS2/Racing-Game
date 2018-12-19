@@ -173,16 +173,13 @@ update_status ModulePlayer::Update(float dt)
 	}
 	if(App->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
 	{
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE) 
-			acceleration = MAX_ACCELERATION * dt;
 		if(turn < TURN_DEGREES)
 			turn +=  TURN_DEGREES;
 	}
 
 	if(App->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
 	{
-		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE)
-			acceleration = MAX_ACCELERATION * dt;
+			
 		if(turn > -TURN_DEGREES)
 			turn -= TURN_DEGREES;
 	}
