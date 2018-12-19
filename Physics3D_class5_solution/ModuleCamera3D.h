@@ -24,11 +24,12 @@ private:
 
 	void CalculateViewMatrix();
 	
-	vec3 TransformToVec3(btVector3 vector);
+	
 
 public:
 	
 	vec3 X, Y, Z, Position, Reference;
+	vec3 TransformToVec3(btVector3 vector);
 
 private:
 	p2Queue<vec3> pastDirections;

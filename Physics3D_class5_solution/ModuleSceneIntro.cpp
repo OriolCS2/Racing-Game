@@ -157,6 +157,32 @@ void ModuleSceneIntro::CreateObjects()
 	cube17.SetRotation(90, { 0,1,0 });
 	App->physics->AddBody(cube17, 0.0f);
 	bodies.PushBack(cube17);
+	//FINAL RECTE 
+
+	Cube cube18(3, 15, 3);
+	cube18.color = White;
+	cube18.SetPos(-42.5f, 0, 152.5f);
+	cube18.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube18, 0.0f);
+	bodies.PushBack(cube18);
+
+
+
+
+	/*
+	Cube c(49, 5, 49);
+	c.SetPos(125, 55, -500);
+	PhysBody3D* body = App->physics->AddBody(c, 1000);
 	
+	Cube cube18(5, 7, 50);
+	cube18.color = White;
+	cube18.SetPos(5, 0, 140);
+	PhysBody3D* body2 = App->physics->AddBody(cube18, 0.0f);
+	
+
+	btVector3 pivotStart(0, 0, 0);
+	btVector3 pivotA(22.5, 0, 0);
+	App->physics->AddConstraintHinge(*body, *body2, App->camera->TransformToVec3(pivotStart), App->camera->TransformToVec3(pivotA), { 0,0,1 }, { 0,0,1 });
+	*/
 }
 
