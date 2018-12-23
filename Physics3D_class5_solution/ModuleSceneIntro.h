@@ -39,8 +39,14 @@ public:
 
 	PhysBody3D* body2;
 	PhysBody3D* body;
-	Cube cube19{ 10, 7, 4 };
+	PhysBody3D* body3;
+	PhysBody3D* body4;
+	PhysBody3D* body5;
+	PhysBody3D* body6;
+
 	Cube cube18{ 6, 16, 3 };
+	Cube cube19{ 3, 16, 3 };
+	Cube cube20{ 3, 16, 3 };
 
 
 
