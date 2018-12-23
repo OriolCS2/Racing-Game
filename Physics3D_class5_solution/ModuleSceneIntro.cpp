@@ -40,9 +40,15 @@ update_status ModuleSceneIntro::Update(float dt)
 	p.color = White;
 	p.Render();
 	
+	//body2->GetTransform(&cube19.transform);
+	body->GetTransform(&cube18.transform);
+	cube18.Render();
+	
 	for (int i = 0; i < bodies.Count(); ++i) {
 		bodies[i].Render();
 	}
+	
+	
 
 	return UPDATE_CONTINUE;
 }
@@ -159,30 +165,27 @@ void ModuleSceneIntro::CreateObjects()
 	bodies.PushBack(cube17);
 	//FINAL RECTE 
 
-	Cube cube18(3, 15, 3);
-	cube18.color = White;
-	cube18.SetPos(-42.5f, 0, 152.5f);
-	cube18.SetRotation(90, { 0,1,0 });
-	App->physics->AddBody(cube18, 0.0f);
-	bodies.PushBack(cube18);
-
-
-
-
-	/*
-	Cube c(49, 5, 49);
-	c.SetPos(125, 55, -500);
-	PhysBody3D* body = App->physics->AddBody(c, 1000);
+	//COSA QUE GIRA
 	
-	Cube cube18(5, 7, 50);
-	cube18.color = White;
-	cube18.SetPos(5, 0, 140);
-	PhysBody3D* body2 = App->physics->AddBody(cube18, 0.0f);
+	//EL SEGON
+	cube18.color = Red;
+	cube18.SetPos(-42.5f, 3, 152.5f);
+	cube18.SetRotation(90, vec3(0, 0, 1));
+	body = App->physics->AddBody(cube18, 10000.0f);
+	body->GetBody()->setLinearFactor(btVector3(0, 0, 0));
+	
+	
+	
+	//EL PRIMER
+	Cylinder cyl(0.1f, 3);
+	cyl.SetPos(-33.5f, 3, 152.5f);
+	cyl.SetRotation(90, vec3(0, 0, 1));
+	body2 = App->physics->AddBody(cyl, 10000.0f);
+	body2->GetBody()->setLinearFactor(btVector3(0, 0, 0));
 	
 
-	btVector3 pivotStart(0, 0, 0);
-	btVector3 pivotA(22.5, 0, 0);
-	App->physics->AddConstraintHinge(*body, *body2, App->camera->TransformToVec3(pivotStart), App->camera->TransformToVec3(pivotA), { 0,0,1 }, { 0,0,1 });
-	*/
+
+	App->physics->AddConstraintHinge(*body2, *body, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0),true, true);
+
 }
 

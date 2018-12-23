@@ -46,5 +46,7 @@ void PhysBody3D::SetPos(float x, float y, float z)
 	body->setWorldTransform(t);
 }
 
-
+btRigidBody* PhysBody3D::GetBody() {
+	return body;
+}
 

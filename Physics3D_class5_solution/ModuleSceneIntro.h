@@ -32,6 +32,31 @@ public:
 
 	p2DynArray<Cube> bodies;
 
+
+
+
+
+
+	PhysBody3D* body2;
+	PhysBody3D* body;
+	Cube cube19{ 10, 7, 4 };
+	Cube cube18{ 6, 16, 3 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	PhysBody3D* pb_chassis;
 	Cube p_chassis;
 
