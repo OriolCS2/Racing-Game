@@ -35,10 +35,7 @@ bool ModuleSceneIntro::CleanUp()
 // Update
 update_status ModuleSceneIntro::Update(float dt)
 {
-	Plane p(0, 1, 0, 0);
-	p.axis = true;
-	p.color = White;
-	p.Render();
+
 	
 	//body2->GetTransform(&cube19.transform);
 	body->GetTransform(&cube18.transform);
@@ -63,6 +60,13 @@ void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 
 void ModuleSceneIntro::CreateObjects()
 {
+
+	Cube cube1000(1000, 0, 1000); //terra
+	cube1000.SetPos(0, 0, 0);
+	cube1000.color = Black;
+	App->physics->AddBody(cube1000, 0.0f);
+	bodies.PushBack(cube1000);
+
 	Cube cube(100, 7, 50); //el que tens davant al entrar
 	cube.SetPos(0, 0, -25);
 	cube.color = White;
