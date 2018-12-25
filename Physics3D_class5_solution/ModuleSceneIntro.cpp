@@ -156,78 +156,111 @@ void ModuleSceneIntro::CreateObjects()
 
 	Cube cube16(5, 7, 100);
 	cube16.color = White;
-	cube16.SetPos(-42.5f, 0, 167.5f);
+	cube16.SetPos(-82.5f, 0, 167.5f);
 	cube16.SetRotation(90, { 0,1,0 });
 	App->physics->AddBody(cube16, 0.0f);
 	bodies.PushBack(cube16);
 
 	Cube cube17(5, 7, 80);
 	cube17.color = White;
-	cube17.SetPos(-42.5f, 0, 137.5f);
+	cube17.SetPos(-82.5f, 0, 137.5f);
 	cube17.SetRotation(90, { 0,1,0 });
 	App->physics->AddBody(cube17, 0.0f);
 	bodies.PushBack(cube17);
-
 	//FINAL RECTE 
 
-	//COSA QUE GIRA
-	
-	//EL SEGON
+	Cube cube30(5, 7, 100);
+	cube30.color = White;
+	cube30.SetPos(-42.5f, 0, 167.5f);
+	cube30.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube30, 0.0f);
+	bodies.PushBack(cube30);
+
+	Cube cube31(5, 7, 80);
+	cube31.color = White;
+	cube31.SetPos(-42.5f, 0, 137.5f);
+	cube31.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube31, 0.0f);
+	bodies.PushBack(cube31);
+
+	Cube cube32(5, 7, 80);
+	cube32.color = White;
+	cube32.SetPos(-120.5f, 0, 167.5f);
+	cube32.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube32, 0.0f);
+	bodies.PushBack(cube32);
+
+	Cube cube33(5, 7, 160);
+	cube33.color = White;
+	cube33.SetPos(-163, 0, 90);
+	App->physics->AddBody(cube33, 0.0f);
+	bodies.PushBack(cube33);
+
+	Cube cube34(5, 7, 140);
+	cube34.color = White;
+	cube34.SetPos(-120, 0, 67.5f);
+	App->physics->AddBody(cube34, 0.0f);
+	bodies.PushBack(cube34);
+
+	Cube cube35(5, 7, 100);
+	cube35.color = White;
+	cube35.SetPos(-167.5f, 0, -5);
+	cube35.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube35, 0.0f);
+	bodies.PushBack(cube35);
+
+	Cube cube36(5, 7, 80);
+	cube36.color = White;
+	cube36.SetPos(-200.5f, 0, 7.5f);
+	cube36.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube36, 0.0f);
+	bodies.PushBack(cube36);
+
+
+	//CONSTRAINTS
+
+	//PRIMERA
 	cube18.color = Red;
 	cube18.SetPos(-42.5f, 3, 152.5f);
 	cube18.SetRotation(90, vec3(0, 0, 1));
 	body = App->physics->AddBody(cube18, 10000.0f);
 	body->GetBody()->setLinearFactor(btVector3(0, 0, 0));
 	
-	
-	
-	//EL PRIMER
 	Cylinder cyl(0.1f, 3);
 	cyl.SetPos(-33.5f, 20, 152.5f);
 	cyl.SetRotation(90, vec3(0, 0, 1));
 	body2 = App->physics->AddBody(cyl, 10000.0f);
 	body2->GetBody()->setLinearFactor(btVector3(0, 0, 0));
 	
-
 	App->physics->AddConstraintHinge(*body2, *body, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0),true, true);
 
-
-
-
-	//////////////////////////////////
+	//SEGONA
 	cube19.color = Red;
 	cube19.SetPos(-92.5f, 10, 160.5f);
 	cube19.SetRotation(90, vec3(0, 1, 0));
 	body4 = App->physics->AddBody(cube19, 10000.0f);
 	body4->GetBody()->setLinearFactor(btVector3(0, 0, 0));
 
-
-
-	//EL PRIMER
 	Cylinder cyl2(0.1f, 3);
 	cyl2.SetPos(-83.5f, 10, 160.5f);
 	cyl2.SetRotation(90, vec3(0, 1, 0));
 	body3 = App->physics->AddBody(cyl2, 10000.0f);
 	body3->GetBody()->setLinearFactor(btVector3(0, 0, 0));
 
-
 	App->physics->AddConstraintHinge(*body3, *body4, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 
+	//TERCERA
 	cube20.color = Red;
-	cube20.SetPos(-92.5f, 10, 142.5f);
+	cube20.SetPos(-92.5f, 10, 144.5f);
 	cube20.SetRotation(90, vec3(0, 1, 0));
 	body6 = App->physics->AddBody(cube20, 10000.0f);
 	body6->GetBody()->setLinearFactor(btVector3(0, 0, 0));
 
-
-
-	//EL PRIMER
 	Cylinder cyl3(0.1f, 3);
-	cyl3.SetPos(-83.5f, 10, 142.5f);
+	cyl3.SetPos(-83.5f, 10, 144.5f);
 	cyl3.SetRotation(90, vec3(0, 1, 0));
 	body5 = App->physics->AddBody(cyl3, 10000.0f);
 	body5->GetBody()->setLinearFactor(btVector3(0, 0, 0));
-
 
 	App->physics->AddConstraintHinge(*body5, *body6, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 
