@@ -216,6 +216,20 @@ void ModuleSceneIntro::CreateObjects()
 	App->physics->AddBody(cube36, 0.0f);
 	bodies.PushBack(cube36);
 
+	Cube cube37(5, 7, 2);
+	cube37.color = Green;
+	cube37.SetPos(-68.5f, 0, 153);
+	cube37.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube37, 0.0f);
+	bodies.PushBack(cube37);
+
+	Cube cube38(10, 7, 2);
+	cube38.color = Green;
+	cube38.SetPos(-88.5f, 0, 153);
+	cube38.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube38, 0.0f);
+	bodies.PushBack(cube38);
+
 
 	//CONSTRAINTS
 
