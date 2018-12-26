@@ -44,12 +44,15 @@ update_status ModuleSceneIntro::Update(float dt)
 	cube19.Render();
 	body6->GetTransform(&cube20.transform);
 	cube20.Render();
+	body8->GetTransform(&cube10000.transform);
+	cube10000.Render();
 	
 	for (int i = 0; i < bodies.Count(); ++i) {
 		bodies[i].Render();
 	}
 	
-	
+
+		
 
 	return UPDATE_CONTINUE;
 }
@@ -220,21 +223,65 @@ void ModuleSceneIntro::CreateObjects()
 	App->physics->AddBody(cube36, 0.0f);
 	bodies.PushBack(cube36);
 
-	Cube cube37(5, 7, 2);
+	
+
+	Cube cube38(5, 7, 80);
+	cube38.color = White;
+	cube38.SetPos(-242.8f, 0, -30.5f);
+	App->physics->AddBody(cube38, 0.0f);
+	bodies.PushBack(cube38);
+
+	Cube cube39(5, 7, 80);
+	cube39.color = White;
+	cube39.SetPos(-219.8f, 0, -42.5f);
+	App->physics->AddBody(cube39, 0.0f);
+	bodies.PushBack(cube39);
+
+	Cube cube40(5, 7, 80);
+	cube40.color = White;
+	cube40.SetPos(-242.8f, 0, -70.5f);
+	App->physics->AddBody(cube40, 0.0f);
+	bodies.PushBack(cube40);
+
+	Cube cube41(5, 7, 200);
+	cube41.color = White;
+	cube41.SetPos(-145, 0, -112.5f);
+	cube41.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube41, 0.0f);
+	bodies.PushBack(cube41);
+
+	Cube cube42(5, 7, 200);
+	cube42.color = White;
+	cube42.SetPos(-117.5f, 0, -80);
+	cube42.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube42, 0.0f);
+	bodies.PushBack(cube42);
+
+	Cube cube43(5, 7, 100);
+	cube43.color = White;
+	cube43.SetPos(-15.5f, 0, -127.5f);
+	App->physics->AddBody(cube43, 0.0f);
+	bodies.PushBack(cube43);
+
+	Cube cube44(5, 7, 180);
+	cube44.color = White;
+	cube44.SetPos(-42.5f, 0, -200);
+	App->physics->AddBody(cube44, 0.0f);
+	bodies.PushBack(cube44);
+
+	//OBSTACLES
+	Cube cube37(8, 7, 2);
 	cube37.color = Green;
-	cube37.SetPos(-68.5f, 0, 153);
+	cube37.SetPos(-78.5f, 0, 153);
 	cube37.SetRotation(90, { 0,1,0 });
 	App->physics->AddBody(cube37, 0.0f);
 	bodies.PushBack(cube37);
 
-	Cube cube38(10, 7, 2);
-	cube38.color = Green;
-	cube38.SetPos(-88.5f, 0, 153);
-	cube38.SetRotation(90, { 0,1,0 });
-	App->physics->AddBody(cube38, 0.0f);
-	bodies.PushBack(cube38);
-
-
+	Cube cube999(12, 7, 2);
+	cube999.color = Green;
+	cube999.SetPos(-152.5f, 0, 122);
+	App->physics->AddBody(cube999, 0.0f);
+	bodies.PushBack(cube999);
 	//CONSTRAINTS
 
 	//PRIMERA
@@ -273,7 +320,7 @@ void ModuleSceneIntro::CreateObjects()
 	cube20.SetRotation(90, vec3(0, 1, 0));
 	body6 = App->physics->AddBody(cube20, 10000.0f);
 	body6->GetBody()->setLinearFactor(btVector3(0, 0, 0));
-
+	
 	Cylinder cyl3(0.1f, 3);
 	cyl3.SetPos(-83.5f, 10, 144.5f);
 	cyl3.SetRotation(90, vec3(0, 1, 0));
@@ -282,5 +329,19 @@ void ModuleSceneIntro::CreateObjects()
 
 	App->physics->AddConstraintHinge(*body5, *body6, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 
+
+	cube10000.color = Red;
+	cube10000.SetPos(-135.5f, 3, 122.5f);
+	cube10000.SetRotation(90, vec3(0, 0, 1));
+	body8 = App->physics->AddBody(cube10000, 10000.0f);
+	body8->GetBody()->setLinearFactor(btVector3(0, 0, 0));
+
+	Cylinder cyl1(0.1f, 3);
+	cyl1.SetPos(-133.5f, 20, 122.5f);
+	cyl1.SetRotation(90, vec3(0, 0, 1));
+	body7 = App->physics->AddBody(cyl1, 10000.0f);
+	body7->GetBody()->setLinearFactor(btVector3(0, 0, 0));
+
+	App->physics->AddConstraintHinge(*body7, *body8, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 }
 
