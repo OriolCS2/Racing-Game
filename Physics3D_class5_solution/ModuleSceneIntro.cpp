@@ -76,9 +76,9 @@ void ModuleSceneIntro::CreateObjects()
 	App->physics->AddBody(cube, 0.0f);
 	bodies.PushBack(cube);
 	
-	Cube cube6(33, 7, 5); //darrera teu al entrar
+	Cube cube6(38, 7, 5); //darrera teu al entrar
 	cube6.color = White;
-	cube6.SetPos(0, 0, 20);
+	cube6.SetPos(3.5f, 0, 20);
 	App->physics->AddBody(cube6, 0.0f);
 	bodies.PushBack(cube6);
 
@@ -90,7 +90,7 @@ void ModuleSceneIntro::CreateObjects()
 
 	Cube cube3(5, 7, 30); //dreta al entrar
 	cube3.color = White;
-	cube3.SetPos(30, 0, 10);
+	cube3.SetPos(25, 0, 15);
 	App->physics->AddBody(cube3, 0.0f);
 	bodies.PushBack(cube3);
 
@@ -100,15 +100,11 @@ void ModuleSceneIntro::CreateObjects()
 	App->physics->AddBody(cube4, 0.0f);
 	bodies.PushBack(cube4);
 
-	Cube cube5(5, 7, 30); //dreta2 al entrar
-	cube5.color = White;
-	cube5.SetPos(25, 0, 40);
-	App->physics->AddBody(cube5, 0.0f);
-	bodies.PushBack(cube5);
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	Cube cube7(5, 7, 30); //dreta3 al entrar
+	Cube cube7(5, 7, 20); //dreta3 al entrar
 	cube7.color = White;
-	cube7.SetPos(20, 0, 60);
+	cube7.SetPos(20, 0, 65);
 	App->physics->AddBody(cube7, 0.0f);
 	bodies.PushBack(cube7);
 
@@ -269,6 +265,59 @@ void ModuleSceneIntro::CreateObjects()
 	App->physics->AddBody(cube44, 0.0f);
 	bodies.PushBack(cube44);
 
+	Cube cube45(5, 7, 80);
+	cube45.color = White;
+	cube45.SetPos(-15.5f, 0, -217.5f);
+	App->physics->AddBody(cube45, 0.0f);
+	bodies.PushBack(cube45);
+
+	Cube cube46(5, 7, 80);
+	cube46.color = White;
+	cube46.SetPos(22, 0, -257.5f);
+	cube46.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube46, 0.0f);
+	bodies.PushBack(cube46);
+
+	Cube cube47(5, 7, 80);
+	cube47.color = White;
+	cube47.SetPos(22, 0, -257.5f);
+	cube47.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube47, 0.0f);
+	bodies.PushBack(cube47);
+
+	Cube cube48(5, 7, 120);
+	cube48.color = White;
+	cube48.SetPos(19.5f, 0, -287.5f);
+	cube48.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube48, 0.0f);
+	bodies.PushBack(cube48);
+
+	Cube cube49(5, 7, 340);
+	cube49.color = White;
+	cube49.SetPos(82, 0, -120);
+	App->physics->AddBody(cube49, 0.0f);
+	bodies.PushBack(cube49);
+
+	Cube cube50(5, 7, 290);
+	cube50.color = White;
+	cube50.SetPos(60, 0, -115);
+	App->physics->AddBody(cube50, 0.0f);
+	bodies.PushBack(cube50);
+
+	Cube cube51(5, 7, 40);
+	cube51.color = White;
+	cube51.SetPos(42.5f, 0, 32.5f);
+	cube51.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube51, 0.0f);
+	bodies.PushBack(cube51);
+
+	Cube cube52(5, 7, 65);
+	cube52.color = White;
+	cube52.SetPos(53, 0, 52.5f);
+	cube52.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube52, 0.0f);
+	bodies.PushBack(cube52);
+
 	//OBSTACLES
 	Cube cube37(8, 7, 2);
 	cube37.color = Green;
@@ -291,10 +340,10 @@ void ModuleSceneIntro::CreateObjects()
 	body = App->physics->AddBody(cube18, 10000.0f);
 	body->GetBody()->setLinearFactor(btVector3(0, 0, 0));
 	
-	Cylinder cyl(0.1f, 3);
-	cyl.SetPos(-33.5f, 20, 152.5f);
-	cyl.SetRotation(90, vec3(0, 0, 1));
-	body2 = App->physics->AddBody(cyl, 10000.0f);
+	Cylinder cyl43(0.1f, 3);
+	cyl43.SetPos(-33.5f, 20, 152.5f);
+	cyl43.SetRotation(90, vec3(0, 0, 1));
+	body2 = App->physics->AddBody(cyl43, 10000.0f);
 	body2->GetBody()->setLinearFactor(btVector3(0, 0, 0));
 	
 	App->physics->AddConstraintHinge(*body2, *body, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0),true, true);
