@@ -45,11 +45,14 @@ public:
 	PhysBody3D* body6;
 	PhysBody3D* body7;
 	PhysBody3D* body8;
+	PhysBody3D* body9;
+	PhysBody3D* body10;
 
 	Cube cube18{ 6, 16, 3 };
 	Cube cube19{ 3, 16, 3 };
 	Cube cube20{ 3, 16, 3 };
 	Cube cube10000{ 7, 16, 3 };
+	Cube cube11000{ 7, 30, 3 };
 
 
 
