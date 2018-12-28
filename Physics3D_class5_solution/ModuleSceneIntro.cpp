@@ -48,6 +48,8 @@ update_status ModuleSceneIntro::Update(float dt)
 	cube10000.Render();
 	body9->GetTransform(&cube11000.transform);
 	cube11000.Render();
+	body11->GetTransform(&cube11100.transform);
+	cube11100.Render();
 	
 	for (int i = 0; i < bodies.Count(); ++i) {
 		bodies[i].Render();
@@ -358,6 +360,40 @@ void ModuleSceneIntro::CreateObjects()
 	App->physics->AddBody(cube995, 0.0f);
 	bodies.PushBack(cube995);
 
+	Cube cube994(12, 7, 2);
+	cube994.color = Green;
+	cube994.SetPos(-212.5f, 0, -105);
+	cube994.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube994, 0.0f);
+	bodies.PushBack(cube994);
+
+	Cube cube993(12, 7, 2);
+	cube993.color = Green;
+	cube993.SetPos(-212.5f, 0, -88);
+	cube993.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube993, 0.0f);
+	bodies.PushBack(cube993);
+
+	Cube cube992(6, 10, 4);
+	cube992.color = Green;
+	cube992.SetPos(-197.5f, 0, -96.5f);
+	cube992.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube992, 0.0f);
+	bodies.PushBack(cube992);
+
+	Cube cube991(20, 7, 2);
+	cube991.color = Green;
+	cube991.SetPos(-150.5f, 0, -104);
+	cube991.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube991, 0.0f);
+	bodies.PushBack(cube991);
+
+	Cube cube990(6, 7, 2);
+	cube990.color = Green;
+	cube990.SetPos(-150.5f, 0, -85);
+	cube990.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube990, 0.0f);
+	bodies.PushBack(cube990);
 
 	//CONSTRAINTS
 
@@ -434,5 +470,20 @@ void ModuleSceneIntro::CreateObjects()
 	body10->GetBody()->setLinearFactor(btVector3(0, 0, 0));
 
 	App->physics->AddConstraintHinge(*body10, *body9, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
+
+	cube11100.color = Red;
+	cube11100.SetPos(-175.5f, 3, -94.5f);
+	cube11100.SetRotation(90, vec3(0, 0, 1));
+	body11 = App->physics->AddBody(cube11100, 10000.0f);
+	body11->GetBody()->setLinearFactor(btVector3(0, 0, 0));
+
+	Cylinder cyl543221(0.1f, 3);
+	cyl543221.SetPos(-175.5f, 20, -94.5f);
+	cyl543221.SetRotation(90, vec3(0, 0, 1));
+	body12 = App->physics->AddBody(cyl543221, 10000.0f);
+	body12->GetBody()->setLinearFactor(btVector3(0, 0, 0));
+
+	App->physics->AddConstraintHinge(*body12, *body11, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
 }
+
 
