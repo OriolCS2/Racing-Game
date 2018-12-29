@@ -36,12 +36,12 @@ public:
 	PhysBody3D* sensor = nullptr;
 	bool InSecondLap = false;
 	bool FinalLap = false;
-	int MinBeat = 1;
+	int MinBeat = 3;
 	int TimeAfterFinish = 3000;
 	int TimeFinish = 0;
 	int TimeMeta = 5000;
 	int TimeColl = 0;
-	int SecondBeat = 50;
+	int SecondBeat = 00;
 
 	p2DynArray<Cube> bodies;
 
