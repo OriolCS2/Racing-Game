@@ -596,31 +596,31 @@ void ModuleSceneIntro::ChangeTime()
 	p2SString StringTime;
 	if (Min > 9 && ((SDL_GetTicks() - InitTime) / 1000) > 9) {
 		if (SecondBeat < 10) {
-			StringTime.create("SUPER AMAZING RACING GAME OMG || Time To Beat: 0%i : 0%i - YourTime: %i : %.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+			StringTime.create("SUPER RACING GAME || Time To Beat: 0%i : 0%i - YourTime: %i : %.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
 		}
 		else
-			StringTime.create("SUPER AMAZING RACING GAME OMG || Time To Beat: 0%i : %i - YourTime: %i : %.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+			StringTime.create("SUPER RACING GAME || Time To Beat: 0%i : %i - YourTime: %i : %.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
 	}
 	else if (Min > 9 && ((SDL_GetTicks() - InitTime) / 1000) <= 9) {
 		if (SecondBeat < 10) {
-			StringTime.create("SUPER AMAZING RACING GAME OMG || Time To Beat: 0%i : 0%i - YourTime: %i : 0%.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+			StringTime.create("SUPER RACING GAME || Time To Beat: 0%i : 0%i - YourTime: %i : 0%.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
 		}
 		else
-			StringTime.create("SUPER AMAZING RACING GAME OMG || Time To Beat: 0%i : %i - YourTime: %i : 0%.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+			StringTime.create("SUPER RACING GAME || Time To Beat: 0%i : %i - YourTime: %i : 0%.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
 	}
 	else if (Min <= 9 && ((SDL_GetTicks() - InitTime) / 1000) <= 9) {
 		if (SecondBeat < 10) {
-			StringTime.create("SUPER AMAZING RACING GAME OMG || Time To Beat: 0%i : 0%i - YourTime: 0%i : 0%.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+			StringTime.create("SUPER RACING GAME || Time To Beat: 0%i : 0%i - YourTime: 0%i : 0%.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
 		}
 		else 
-			StringTime.create("SUPER AMAZING RACING GAME OMG || Time To Beat: 0%i : %i - YourTime: 0%i : 0%.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+			StringTime.create("SUPER RACING GAME || Time To Beat: 0%i : %i - YourTime: 0%i : 0%.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
 	}
 	else {
 		if (SecondBeat < 10) {
-			StringTime.create("SUPER AMAZING RACING GAME OMG || Time To Beat: 0%i : 0%i - YourTime: 0%i : %.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+			StringTime.create("SUPER RACING GAME || Time To Beat: 0%i : 0%i - YourTime: 0%i : %.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
 		}
 		else
-			StringTime.create("SUPER AMAZING RACING GAME OMG || Time To Beat: 0%i : %i - YourTime: 0%i : %.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+			StringTime.create("SUPER RACING GAME || Time To Beat: 0%i : %i - YourTime: 0%i : %.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
 	}
 		
 	App->window->SetTitle(StringTime.GetString());
