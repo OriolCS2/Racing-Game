@@ -60,6 +60,8 @@ public:
 	PhysBody3D* body12;
 	PhysBody3D* body13;
 	PhysBody3D* body14;
+	PhysBody3D* body15;
+	PhysBody3D* body16;
 
 	Cube cube18{ 3, 16, 3 };
 	Cube cube19{ 3, 16, 3 };
@@ -68,7 +70,7 @@ public:
 	Cube cube11000{ 3, 30, 3 };
 	Cube cube11100{ 3, 16, 3 };
 	Cube cube11110{ 3, 16, 3 };
-
+	Cube cube21{3, 16, 3};
 
 
 	PhysBody3D* pb_chassis;
