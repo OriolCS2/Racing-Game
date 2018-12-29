@@ -31,7 +31,7 @@ bool ModulePlayer::Start()
 	car.maxSuspensionTravelCm = 1000.0f;
 	car.frictionSlip = 50.5;
 	car.maxSuspensionForce = 6000.0f;
-	car.aileron_offset.Set(0, 1.8f, 3);
+	car.aileron_offset.Set(0, 2.5f, 3);
 	car.aileron_radius = 0.5f;
 	car.aileron_height = 3.5f;
 	
