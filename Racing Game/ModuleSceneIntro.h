@@ -46,10 +46,6 @@ public:
 	p2DynArray<Cube> bodies;
 
 
-
-
-
-
 	PhysBody3D* body2;
 	PhysBody3D* body;
 	PhysBody3D* body3;
@@ -72,19 +68,6 @@ public:
 	Cube cube11000{ 7, 30, 3 };
 	Cube cube11100{ 7, 16, 3 };
 	Cube cube11110{ 7, 16, 3 };
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

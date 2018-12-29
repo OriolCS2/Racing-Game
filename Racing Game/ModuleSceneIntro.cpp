@@ -384,32 +384,32 @@ void ModuleSceneIntro::CreateObjects()
 
 	Cube cube997(12, 7, 2);
 	cube997.color = Green;
-	cube997.SetPos(-229.5f, 0, -10);
+	cube997.SetPos(-227.5f, 0, -10);
 	App->physics->AddBody(cube997, 0.0f);
 	bodies.PushBack(cube997);
 
 	Cube cube996(12, 7, 2);
 	cube996.color = Green;
-	cube996.SetPos(-233.5f, 0, -40);
+	cube996.SetPos(-235.5f, 0, -40);
 	App->physics->AddBody(cube996, 0.0f);
 	bodies.PushBack(cube996);
 
 	Cube cube995(12, 7, 2);
 	cube995.color = Green;
-	cube995.SetPos(-229.5f, 0, -70);
+	cube995.SetPos(-227.5f, 0, -70);
 	App->physics->AddBody(cube995, 0.0f);
 	bodies.PushBack(cube995);
 
 	Cube cube994(12, 7, 2);
 	cube994.color = Green;
-	cube994.SetPos(-212.5f, 0, -105);
+	cube994.SetPos(-210.5f, 0, -105);
 	cube994.SetRotation(90, { 0,1,0 });
 	App->physics->AddBody(cube994, 0.0f);
 	bodies.PushBack(cube994);
 
 	Cube cube993(12, 7, 2);
 	cube993.color = Green;
-	cube993.SetPos(-212.5f, 0, -88);
+	cube993.SetPos(-205.5f, 0, -88);
 	cube993.SetRotation(90, { 0,1,0 });
 	App->physics->AddBody(cube993, 0.0f);
 	bodies.PushBack(cube993);
@@ -434,6 +434,65 @@ void ModuleSceneIntro::CreateObjects()
 	cube990.SetRotation(90, { 0,1,0 });
 	App->physics->AddBody(cube990, 0.0f);
 	bodies.PushBack(cube990);
+
+	Cube cube987(7, 7, 2);
+	cube987.color = Green;
+	cube987.SetPos(-115, 0, -96);
+	cube987.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube987, 0.0f);
+	bodies.PushBack(cube987);
+
+	Cube cube989(10, 7, 2);
+	cube989.color = Green;
+	cube989.SetPos(-80, 0, -105);
+	cube989.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube989, 0.0f);
+	bodies.PushBack(cube989);
+
+	Cube cube988(10, 7, 2);
+	cube988.color = Green;
+	cube988.SetPos(-80, 0, -87);
+	cube988.SetRotation(90, { 0,1,0 });
+	App->physics->AddBody(cube988, 0.0f);
+	bodies.PushBack(cube988);
+
+	Cube cube986(15, 7, 2);
+	cube986.color = Green;
+	cube986.SetPos(-28, 0, -96);
+	cube986.SetRotation(135, {0 ,1,0 });
+	App->physics->AddBody(cube986, 0.0f);
+	bodies.PushBack(cube986);
+
+	Cube cube985(15, 7, 2);
+	cube985.color = Green;
+	cube985.SetPos(-33.5f, 0, -150);
+	App->physics->AddBody(cube985, 0.0f);
+	bodies.PushBack(cube985);
+
+	Cube cube984(12, 7, 2);
+	cube984.color = Green;
+	cube984.SetPos(-23.5f, 0, -180);
+	App->physics->AddBody(cube984, 0.0f);
+	bodies.PushBack(cube984);
+
+	Cube cube983(10, 7, 2);
+	cube983.color = Green;
+	cube983.SetPos(-28.5f, 0,-220);
+	App->physics->AddBody(cube983, 0.0f);
+	bodies.PushBack(cube983);
+
+	Cube cube982(10, 7, 2);
+	cube982.color = Green;
+	cube982.SetPos(-37.5f, 0, -255);
+	App->physics->AddBody(cube982, 0.0f);
+	bodies.PushBack(cube982);
+
+	Cube cube981(10, 7, 2);
+	cube981.color = Green;
+	cube981.SetPos(-20.5f, 0, -255);
+	App->physics->AddBody(cube981, 0.0f);
+	bodies.PushBack(cube981);
+
 
 	//CONSTRAINTS
 
