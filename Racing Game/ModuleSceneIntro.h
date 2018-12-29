@@ -61,13 +61,13 @@ public:
 	PhysBody3D* body13;
 	PhysBody3D* body14;
 
-	Cube cube18{ 6, 16, 3 };
+	Cube cube18{ 3, 16, 3 };
 	Cube cube19{ 3, 16, 3 };
 	Cube cube20{ 3, 16, 3 };
-	Cube cube10000{ 7, 16, 3 };
-	Cube cube11000{ 7, 30, 3 };
-	Cube cube11100{ 7, 16, 3 };
-	Cube cube11110{ 7, 16, 3 };
+	Cube cube10000{ 3, 16, 3 };
+	Cube cube11000{ 3, 30, 3 };
+	Cube cube11100{ 3, 16, 3 };
+	Cube cube11110{ 3, 16, 3 };
 
 
 

@@ -63,7 +63,7 @@ update_status ModuleSceneIntro::Update(float dt)
 	
 	ChangeTime();
 	if (FinalLap) {
-		if (Min <= MinBeat && (SDL_GetTicks() - InitTime) / 1000 < SecondBeat) { //AIXO VOL DIR QUE EL JUGADOR HA GUNYAT
+		if (Min <= MinBeat && (SDL_GetTicks() - InitTime) / 1000 < SecondBeat) {
 			MinBeat = Min;
 			SecondBeat = (SDL_GetTicks() - InitTime) / 1000;
 		}
