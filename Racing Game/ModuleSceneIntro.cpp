@@ -4,6 +4,8 @@
 #include "PhysBody3D.h"
 #include "Primitive.h"
 #include "ModuleCamera3D.h"
+#include "ModuleWindow.h"
+#include "p2String.h"
 #include "ModuleAudio.h"
 #include "Primitive.h"
 
@@ -19,8 +21,11 @@ bool ModuleSceneIntro::Start()
 {
 	LOG("Loading Intro assets");
 	bool ret = true;
-
+	InitTime = SDL_GetTicks();
 	CreateObjects();
+	InSecondLap = false;
+	FinalLap = false;
+	App->player->CanInput = true;
 	return ret;
 }
 
@@ -55,14 +60,40 @@ update_status ModuleSceneIntro::Update(float dt)
 		bodies[i].Render();
 	}
 	
-
-		
-
+	
+	ChangeTime();
+	if (FinalLap) {
+		if (Min <= MinBeat && (SDL_GetTicks() - InitTime) / 1000 < SecondBeat) { //AIXO VOL DIR QUE EL JUGADOR HA GUNYAT
+			MinBeat = Min;
+			SecondBeat = (SDL_GetTicks() - InitTime) / 1000;
+		}
+		else {
+			Min = 0;
+		}
+		App->player->CanInput = false;
+		if (SDL_GetTicks() - TimeFinish > TimeAfterFinish) {
+			FinalLap = false;
+			App->physics->CleanUp();
+			App->player->CleanUp();
+			CleanUp();
+			App->physics->Start();
+			App->player->Start();
+			Start();
+		}
+	}
 	return UPDATE_CONTINUE;
 }
 
 void ModuleSceneIntro::OnCollision(PhysBody3D* body1, PhysBody3D* body2)
 {
+	if (body1 == sensor && !InSecondLap) {
+		InSecondLap = true;
+		TimeColl = SDL_GetTicks();
+	}
+	if (body1 == sensor && InSecondLap && !FinalLap && SDL_GetTicks() - TimeColl > TimeMeta) {
+		FinalLap = true;
+		TimeFinish = SDL_GetTicks();
+	}
 }
 
 void ModuleSceneIntro::CreateObjects()
@@ -322,6 +353,15 @@ void ModuleSceneIntro::CreateObjects()
 	App->physics->AddBody(cube52, 0.0f);
 	bodies.PushBack(cube52);
 
+	//SENSOR
+	
+	Cube cube3432(20, 7, 0);
+	cube3432.color = Green;
+	cube3432.SetPos(24.5f, 0, 40);
+	cube3432.SetRotation(90, { 0,1,0 });
+	sensor = App->physics->AddBody(cube3432, 0.0f, true);
+	sensor->collision_listeners.add(this);
+
 	//OBSTACLES
 	Cube cube37(8, 7, 2);
 	cube37.color = Green;
@@ -484,6 +524,47 @@ void ModuleSceneIntro::CreateObjects()
 	body12->GetBody()->setLinearFactor(btVector3(0, 0, 0));
 
 	App->physics->AddConstraintHinge(*body12, *body11, vec3(0, 0, 0), vec3(0, 0, 0), vec3(1, 0, 0), vec3(0, 0, 0), true, true);
+}
+
+void ModuleSceneIntro::ChangeTime()
+{
+
+	if ((SDL_GetTicks() - InitTime) / 1000 >= 60) {
+		Min++;
+		InitTime = SDL_GetTicks();
+	}
+
+	p2SString StringTime;
+	if (Min > 9 && ((SDL_GetTicks() - InitTime) / 1000) > 9) {
+		if (SecondBeat < 10) {
+			StringTime.create("Time To Beat: 0%i : 0%i --- YourTime: %i : %.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+		}
+		else
+			StringTime.create("Time To Beat: 0%i : %i --- YourTime: %i : %.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+	}
+	else if (Min > 9 && ((SDL_GetTicks() - InitTime) / 1000) <= 9) {
+		if (SecondBeat < 10) {
+			StringTime.create("Time To Beat: 0%i : 0%i --- YourTime: %i : 0%.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+		}
+		else
+			StringTime.create("Time To Beat: 0%i : %i --- YourTime: %i : 0%.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+	}
+	else if (Min <= 9 && ((SDL_GetTicks() - InitTime) / 1000) <= 9) {
+		if (SecondBeat < 10) {
+			StringTime.create("Time To Beat: 0%i : 0%i --- YourTime: 0%i : 0%.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+		}
+		else 
+			StringTime.create("Time To Beat: 0%i : %i --- YourTime: 0%i : 0%.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+	}
+	else {
+		if (SecondBeat < 10) {
+			StringTime.create("Time To Beat: 0%i : 0%i --- YourTime: 0%i : %.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+		}
+		else
+			StringTime.create("Time To Beat: 0%i : %i --- YourTime: 0%i : %.2f", MinBeat, SecondBeat, Min, (SDL_GetTicks() - InitTime) / 1000);
+	}
+		
+	App->window->SetTitle(StringTime.GetString());
 }
 
 

@@ -220,7 +220,7 @@ PhysBody3D* ModulePhysics3D::AddBody(const Sphere& sphere, float mass)
 
 
 // ---------------------------------------------------------
-PhysBody3D* ModulePhysics3D::AddBody(const Cube& cube, float mass)
+PhysBody3D* ModulePhysics3D::AddBody(const Cube& cube, float mass, bool sensor)
 {
 	btCollisionShape* colShape = new btBoxShape(btVector3(cube.size.x*0.5f, cube.size.y*0.5f, cube.size.z*0.5f));
 	shapes.add(colShape);
@@ -235,10 +235,12 @@ PhysBody3D* ModulePhysics3D::AddBody(const Cube& cube, float mass)
 	btDefaultMotionState* myMotionState = new btDefaultMotionState(startTransform);
 	motions.add(myMotionState);
 	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, colShape, localInertia);
-
+	
 	btRigidBody* body = new btRigidBody(rbInfo);
 	PhysBody3D* pbody = new PhysBody3D(body);
-
+	if (sensor) {
+		body->setCollisionFlags(body->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE);
+	}
 	body->setUserPointer(pbody);
 	world->addRigidBody(body);
 	bodies.add(pbody);

@@ -21,6 +21,7 @@ public:
 
 	void OnCollision(PhysBody3D* body1, PhysBody3D* body2);
 	void CreateObjects();
+	void ChangeTime();
 public:
 	/*
 	PhysBody3D* pb_snake[MAX_SNAKE];
@@ -29,6 +30,18 @@ public:
 	PhysBody3D* pb_snake2[MAX_SNAKE];
 	Sphere s_snake2[MAX_SNAKE];
 	*/
+	float InitTime = 0;
+	bool InMinutes = false;
+	int Min = 0;
+	PhysBody3D* sensor = nullptr;
+	bool InSecondLap = false;
+	bool FinalLap = false;
+	int MinBeat = 1;
+	int TimeAfterFinish = 3000;
+	int TimeFinish = 0;
+	int TimeMeta = 5000;
+	int TimeColl = 0;
+	int SecondBeat = 50;
 
 	p2DynArray<Cube> bodies;
 

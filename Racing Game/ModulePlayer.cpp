@@ -3,6 +3,7 @@
 #include "ModulePlayer.h"
 #include "Primitive.h"
 #include "PhysVehicle3D.h"
+#include "ModuleWindow.h"
 #include "PhysBody3D.h"
 
 ModulePlayer::ModulePlayer(Application* app, bool start_enabled) : Module(app, start_enabled), vehicle(NULL)
@@ -156,36 +157,36 @@ bool ModulePlayer::CleanUp()
 update_status ModulePlayer::Update(float dt)
 {
 	turn = acceleration = brake = 0.0f;
-
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
-	{
-		brake = BRAKE_POWER * dt;
-	}
-	if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE) {
-		if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+	if (CanInput) {
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_REPEAT)
 		{
-			acceleration = MAX_ACCELERATION * dt;
+			brake = BRAKE_POWER * dt;
 		}
-		if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+		if (App->input->GetKey(SDL_SCANCODE_SPACE) == KEY_IDLE) {
+			if (App->input->GetKey(SDL_SCANCODE_W) == KEY_REPEAT)
+			{
+				acceleration = MAX_ACCELERATION * dt;
+			}
+			if (App->input->GetKey(SDL_SCANCODE_S) == KEY_REPEAT)
+			{
+				acceleration = -MAX_ACCELERATION * dt;
+			}
+		}
+		if (App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
 		{
-			acceleration = -MAX_ACCELERATION * dt;
+			if (turn < TURN_DEGREES)
+				turn += TURN_DEGREES;
+		}
+
+		if (App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
+		{
+
+			if (turn > -TURN_DEGREES)
+				turn -= TURN_DEGREES;
 		}
 	}
-	if(App->input->GetKey(SDL_SCANCODE_A) == KEY_REPEAT)
-	{
-		if(turn < TURN_DEGREES)
-			turn +=  TURN_DEGREES;
-	}
-
-	if(App->input->GetKey(SDL_SCANCODE_D) == KEY_REPEAT)
-	{
-			
-		if(turn > -TURN_DEGREES)
-			turn -= TURN_DEGREES;
-	}
-
 	
-	
+
 	vehicle->ApplyEngineForce(acceleration);
 	vehicle->Turn(turn);
 	vehicle->Brake(brake);

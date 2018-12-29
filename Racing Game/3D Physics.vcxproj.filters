@@ -90,6 +90,9 @@
     <ClInclude Include="p2Defs.h">
       <Filter>Sources\Tools</Filter>
     </ClInclude>
+    <ClInclude Include="p2String.h">
+      <Filter>Sources\Tools</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ModuleAudio.cpp">
