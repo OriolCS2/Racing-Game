@@ -8,7 +8,7 @@
 #include "p2String.h"
 #include "ModuleAudio.h"
 #include "Primitive.h"
-
+#include "ModuleAudio.h"
 ModuleSceneIntro::ModuleSceneIntro(Application* app, bool start_enabled) : Module(app, start_enabled)
 {
 }
@@ -25,7 +25,11 @@ bool ModuleSceneIntro::Start()
 	CreateObjects();
 	InSecondLap = false;
 	FinalLap = false;
+	win=App->audio->LoadFx("audio/WIN.wav");
+	lose= App->audio->LoadFx("audio/LOSE.wav");
+	App->audio->PlayMusic("audio/SONG.ogg");
 	App->player->CanInput = true;
+	audios = true;
 	return ret;
 }
 
@@ -69,9 +73,17 @@ update_status ModuleSceneIntro::Update(float dt)
 		if (Min <= MinBeat && (SDL_GetTicks() - InitTime) / 1000 < SecondBeat) {
 			MinBeat = Min;
 			SecondBeat = (SDL_GetTicks() - InitTime) / 1000;
+			if (audios) {
+				App->audio->PlayFx(win);
+				audios = false;
+			}
 		}
 		else {
 			Min = 0;
+			if (audios) {
+				App->audio->PlayFx(lose);
+				audios = false;
+			}
 		}
 		App->player->CanInput = false;
 		if (SDL_GetTicks() - TimeFinish > TimeAfterFinish) {

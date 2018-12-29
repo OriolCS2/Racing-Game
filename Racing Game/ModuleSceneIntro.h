@@ -86,4 +86,8 @@ public:
 
 	PhysMotor3D* left_wheel;
 	PhysMotor3D* right_wheel;
+
+	unsigned int win;
+	unsigned int lose;
+	bool audios=false;
 };
